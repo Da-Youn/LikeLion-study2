@@ -1,19 +1,21 @@
-import React from "react";
+import React from 'react';
 
-function Food({ fav }) {
-  return <h1>I like {fav}</h1>;
-}
+class App extends React.Component {
+  state = {
+    isLoading: true,
+    movies: [], // 로딩된 영화 데이터를 저장할 배열
+  };
 
-function App() {
-  return (
-    <div>
-      <h1>Hello Likelion!!</h1>
-      <Food fav="Kimchi" />
-      <Food fav="ramen" />
-      <Food fav="chukumi" />
-      <Food fav="samgiopsal" />
-    </div>
-  );
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ isLoading: false }, 6000);
+    });
+  }
+
+  render() {
+    const { isLoading } = this.state;
+    return <div>{isLoading ? 'Loading...' : 'We are ready!'}</div>;
+  } // 나중에 영화 데이터를 'We are ready!'이 부분에 출력할 것
 }
 
 export default App;
